@@ -10,7 +10,8 @@ class User < ApplicationRecord
                     length: { maximum: 41 },
                     format: { with: VALID_EMAIL_REGEX }
   default_scope -> { order(created_at: :desc) }
-  has_many :recipes
+  has_many :recipes, dependent: :destroy
+  has_secure_password
 
   def capitalize_name
     self.name = name.split.map(&:capitalize)*' '
