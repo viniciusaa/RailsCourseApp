@@ -39,8 +39,6 @@ RSpec.describe Recipe, type: :model do
 		end
 	end
 
-
-
 	it "has created decrescent order" do
 		create(:user)
 	  create(:recipe)

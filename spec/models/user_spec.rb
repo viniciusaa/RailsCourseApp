@@ -46,7 +46,7 @@ RSpec.describe User, type: :model do
   end
 
   describe "relationships" do
-    it "should have many articles" do
+    it "should have many recipes" do
       should have_many(:recipes).dependent(:destroy)
     end
   end
