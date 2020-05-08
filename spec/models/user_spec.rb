@@ -38,6 +38,11 @@ RSpec.describe User, type: :model do
     it "should have a valid format" do
       should_not allow_value("example").for(:email)
     end
+
+		it "'downcase_email' before save method should be working" do
+      create(:user, email: "tEsTinG@GmAil.cOm")
+      expect(User.last.email).to eql("testing@gmail.com")
+    end
   end
 
   describe "relationships" do
@@ -51,7 +56,7 @@ RSpec.describe User, type: :model do
     create(:user, name: "Testing")
     expect(User.first.name).to eql("Testing")
   end
-	
+
   it "has secure password" do
     should have_secure_password
   end

@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  before_save :capitalize_name
+  before_save :capitalize_name, :downcase_email
 
   validates :name, presence: true, length: { minimum: 3, maximum: 35 },
                                    uniqueness: { case_sensitive: false }
@@ -15,5 +15,9 @@ class User < ApplicationRecord
 
   def capitalize_name
     self.name = name.split.map(&:capitalize)*' '
+  end
+
+  def downcase_email
+    self.email = email.downcase
   end
 end
